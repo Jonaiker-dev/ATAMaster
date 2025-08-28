@@ -1,0 +1,56 @@
+<div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="inventoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inventoryModalLabel">Agregar Partida</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Inicia Form -->
+        <form [formGroup]="FormularioPartidas" (ngSubmit)="Guardar()">
+          <div class="mb-3">
+            <label for="batchNumber" class="form-label">Partida <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="batchNumber" placeholder="Ejemplo: H3203" formControlName="partidas">
+          </div>
+          <div class="mb-3">
+            <label for="weight" class="form-label">Peso (kg) <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="weight" placeholder="Peso exacto o aproximado" formControlName="peso" >
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Ubicacion <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="location"  maxlength="11" placeholder="Ejemplo: ATA02010102" formControlName="ubicacion">
+          </div>
+          <div class="mb-3">
+            <label for="fabricType" class="form-label">Tipo de Tela<span class="text-danger">*</span></label>
+            <select class="form-select" id="fabricType" formControlName="tipo_tela">
+              <option selected disabled>Agregar tipo de tela</option>
+              <option value="Jersey">Jersey</option>
+              <option value="Rib">Rib</option>
+              <option value="F.T">French Terry</option>
+              <option value="Pique">Pique</option>
+              <option value="Cinta">Cinta</option>
+              <option value="Rectilineo">Rectilineo</option>
+              <option value="Estampado">Estampado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="numberOfRolls" class="form-label">Rollos </label>
+            <input type="number" class="form-control" id="numberOfRolls" placeholder="Ingrese numero de rollos" formControlName="rollos">
+          </div>
+          <div class="mb-3">
+            <label for="notes" class="form-label">Observacion</label>
+            <textarea class="form-control" id="notes" rows="3" placeholder="" formControlName="observacion"></textarea>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-floppy me-2"></i>Guardar
+            </button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <i class="bi bi-x-lg me-2"></i>Cerrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

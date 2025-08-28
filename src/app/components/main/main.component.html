@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<div class="container py-5">
+    <!-- Título -->
+    <h5 class="fw-bold">Partidas Agregadas</h5>
+    <p class="text-muted"><span class="fw-bolder">{{ps.Partidas().length}}</span> partidas en total</p>
+
+    <!-- Botón -->
+    <div class="mb-4">
+      <button class="btn btn-primary d-flex align-items-center fw-semibold" data-bs-toggle="modal" data-bs-target="#inventoryModal">
+        <i class="bi bi-plus-lg me-2 "></i> Agregar Partida
+      </button>
+      <app-formulario-ubicacion></app-formulario-ubicacion>
+    </div>
+    
+    <!-- Card vacía -->
+    <div class="card p-4 text-center" *ngIf="!ps.Partidas().length">
+      <div class="icon-box mb-3">
+        <i class="bi bi-box"></i>
+      </div>
+      <h6 class="fw-bold">Sin partidas agregadas</h6>
+      <p class="text-muted mb-0">Aqui se mostraran todas las partidas agregadas</p>
+    </div>
+
+    
+    <!-- Tabla de Partidas -->
+    <div class="card p-3" *ngIf="ps.Partidas().length">
+  
+
+    <!-- Botones -->
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-success">
+        <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+      </button>
+      <button class="btn btn-danger">
+        <i class="bi bi-file-earmark-pdf me-1"></i> Export PDF
+      </button>
+    </div>
+
+    <!-- Tabla con scroll -->
+    <div class="table-responsive" >
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Id</th>
+            <th>Partida</th>
+            <th>Peso</th>
+            <th>Ubicacion</th>
+            <th>Tipo de Tela</th>
+            <th>Rollos</th>
+            <th>Observacion</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of ps.Partidas(), let i=index">
+              <td class="fw-bold">{{i+1}}</td>
+              <td>{{p.partidas}}</td>
+              <td>{{p.peso}}</td>
+              <td>{{p.ubicacion}}</td>
+              <td>{{p.tipo_tela}}</td>
+              <td>{{p.rollos}}</td>
+              <td>{{p.observacion}}</td>
+              <td><button class="border-0" style="background-color: inherit;"><i class="bi bi-trash text-danger"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div>

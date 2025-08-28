@@ -1,0 +1,30 @@
+ <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="max-width: 400px; width: 100%;">
+      <!-- Icono -->
+      <div class="icon-circle">
+        <i class="bi bi-person"></i>
+      </div>
+
+      <!-- Título -->
+      <h4 class="text-center fw-bold"> Ubicaciones ATA</h4>
+      <p class="text-center text-muted mb-4">
+        Formulario para el control de ubicaciones del almacen de telas acabadas
+      </p>
+
+      <!-- Input -->
+      <div class="mb-3">
+        <label for="managerName" class="form-label fw-semibold">Encargado</label>
+        <input type="text" class="form-control"  placeholder="Nombre o Codigo" #Encargado>
+      </div>
+
+      <!-- Botón -->
+      <div class="d-grid">
+        <button class="btn btn-primary" (click)="Login(Encargado.value)">Empezar a Ubicar</button>
+      </div>
+
+      <hr>
+      <p class="text-center text-muted small mb-0">
+        Almacen de Tela Acabada.
+      </p>
+    </div>
+  </div>

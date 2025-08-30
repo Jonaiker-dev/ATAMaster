@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ApiDriveService } from '../../services/Drive/api-drive.service';
 import { StorageItems } from '../../interfaces/StorageItems';
 
@@ -11,15 +11,42 @@ export class ModalStorageComponent implements OnInit {
 
   Encargado=sessionStorage.getItem("Encargado")
   data:any
-  files!:StorageItems[]
+  files=signal<StorageItems[]>([])
  
 
   constructor(private drive:ApiDriveService){}
 
   async ngOnInit():Promise<void> {
+    await this.Recargar()
+  }
+
+  async Recargar(){
     this.data=await this.drive.list()
-    this.files=this.data
-    
+    this.files.set(this.data)
+  }
+
+  async BorrarArchivo(name:string|null){
+   
+    try{
+      if(name != null){
+        await this.drive.remove(name)
+        
+      }
+      await this.Recargar()
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  CargarArchivo(e:Event){
+    const files=(e.target as HTMLInputElement).files;
+    console.log(files![0]);
+  }
+
+  async Descargar(filename:string|null){
+    if(filename){
+      this.drive.downloadFile(filename)
+    }
   }
 
 }

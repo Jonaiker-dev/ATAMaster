@@ -10,31 +10,49 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="p-3">
-          
-          
-          <div class="table-responsive">
-            <table class="table align-middle">
+        <div class="p-2">
+          <!-- testing upload -->
+          <div class="d-flex justify-content-between align-items-center  mb-2 ">
+            <div>
+              <input type="file" class="form-control" (change)="CargarArchivo($event)">
+              
+            </div>
+            <div>
+              <button class="btn btn-outline-success" (click)="Recargar()"><i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+          </div>
+          <!-- end -->
+          <div class="card p-4 text-center" *ngIf="!files().length">
+              <div class="icon-box mb-3">
+                <i class="bi bi-folder-plus h1"></i>
+              </div>
+              <h6 class="fw-bold">Sin archivos pendientes</h6>
+              <p class="text-muted mb-0">Aqui se mostraran todos los documentos pendientes </p>
+          </div>
+
+          <!-- Tabla de datos -->
+          <div class="table-responsive" style="overflow-x: auto !important;" *ngIf="files().length">
+            <table class="table table-hover align-middle">
               <thead>
                 <tr>
-                  <th>Nombre</th>
+                  <th style="min-width: 200px;">Nombre</th>
                   <th>Peso</th>
                   <th>Fecha Creacion</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let i of files">
+                <tr *ngFor="let i of files()">
                   <td>
                     <div class="d-flex align-items-center gap-2">
                       <i class="bi bi-file-earmark-spreadsheet-fill h2 text-success "></i>
                       <div>
-                        <div>{{i.name}}</div>
-                        <small class="text-muted">{{Encargado}}</small>
+                        <div #name>{{i.name}}</div>
+                        
                       </div>
                     </div>
                   </td>
-                  <td><span class="badge bg-secondary">{{i.metadata.size}} B</span></td>
+                  <td><span class="badge bg-secondary">{{(i.metadata.size/1024)|number:'1.2-2' }} Kb</span></td>
                   <td>
                     <div class="d-flex align-items-center gap-2">
                       <i class="bi bi-calendar"></i>
@@ -46,10 +64,10 @@
                   </td>
                   <td>
                     <div class="d-flex">
-                      <button class="btn btn-outline-primary btn-sm me-2">
+                      <button class="btn btn-outline-primary btn-sm me-2" (click)="Descargar(name.textContent)">
                         <i class="bi bi-download"></i>
                       </button>
-                      <button class="btn btn-outline-danger btn-sm">
+                      <button class="btn btn-outline-danger btn-sm" (click)="BorrarArchivo(name.textContent)">
                         <i class="bi bi-trash"></i>
                       </button>
                     </div>

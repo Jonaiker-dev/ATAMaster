@@ -39,10 +39,7 @@ files = signal<{ name: string; url: string }[]>([]);
     })));
   }
 
-   async remove(f: { name: string }) {
-    await this.supa.remove(f.name);
-    await this.refresh();
-  }
+  
   
   
 }

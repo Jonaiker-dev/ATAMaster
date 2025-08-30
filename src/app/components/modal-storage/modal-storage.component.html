@@ -1,0 +1,67 @@
+
+<div class="modal fade" id="dataManagementModal" tabindex="-1" aria-labelledby="dataManagementModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex flex-column">
+          <h5 class="modal-title" id="dataManagementModalLabel">Formatos de Ubicacion</h5>
+          <p class="mb-0 text-muted">Aqui se guardaran los formatos pendientes por pasar a sistema</p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="p-3">
+          
+          
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Peso</th>
+                  <th>Fecha Creacion</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of files">
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-file-earmark-spreadsheet-fill h2 text-success "></i>
+                      <div>
+                        <div>{{i.name}}</div>
+                        <small class="text-muted">{{Encargado}}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-secondary">{{i.metadata.size}} B</span></td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-calendar"></i>
+                      <div>
+                        <div>{{i.created_at |  date:'dd/MM/yyyy'}}</div>
+                        
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex">
+                      <button class="btn btn-outline-primary btn-sm me-2">
+                        <i class="bi bi-download"></i>
+                      </button>
+                      <button class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

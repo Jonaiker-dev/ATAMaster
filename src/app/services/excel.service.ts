@@ -28,7 +28,18 @@ export class ExcelService {
     const ws = workbook.getWorksheet(1);
 
   
-    const startRow = 5; 
+    const startRow = 5;
+    //fecha 
+    const date= new Date()
+    const mes = new Intl.DateTimeFormat('es-PE', { month: '2-digit' }).format(date);
+    const fecha= (date.getDate()+'/'+mes+'/'+date.getFullYear()).toString()
+    const fechaRow=ws!.getRow(2)
+    fechaRow.getCell(3).value=fecha
+    fechaRow.getCell(7).value=sessionStorage.getItem("Nombre")
+    fechaRow.commit();
+
+    //Encargado
+
 
     // Insertar datos en la tabla
     filas.forEach((f, i) => {

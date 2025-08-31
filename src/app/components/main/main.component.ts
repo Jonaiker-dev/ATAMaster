@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
 
   async ngOnInit() {
     await this.refresh();
-    console.log(this.ps.Partidas());
+    
   }
 
   async refresh() {
@@ -61,6 +61,18 @@ export class MainComponent implements OnInit {
       this.toast.error("El documento no tiene nombre")
     }
 
+  }
+
+  NuevoExcel(){
+    this.ps.Partidas.set([])
+  }
+
+  EliminarRegistro(index:string){
+    const copia= this.ps.Partidas()
+    const items=[...copia]
+    items.splice(parseInt(index)-1,1)
+    this.ps.Partidas.set(items)
     
   }
+
 }

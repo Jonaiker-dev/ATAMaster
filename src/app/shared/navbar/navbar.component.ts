@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.codigo =this.ps.Trabajadores.find(persona=>persona.codigo.toString()===sessionStorage.getItem('Encargado')) 
     if(this.codigo){
-      this.User=this.codigo.nombre 
+      this.User=this.codigo.nombre
+      sessionStorage.setItem("Nombre",this.codigo.nombre) 
     }else{
       this.User=sessionStorage.getItem("Encargado")!
     }

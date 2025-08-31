@@ -14,8 +14,8 @@
         <app-formulario-ubicacion></app-formulario-ubicacion>
       </div>
       <div>
-        <button type="button" class="btn btn-danger text-light fw-semibold" data-bs-toggle="modal" data-bs-target="#dataManagementModal">
-          <i class="bi bi-folder-fill"></i>  Archivos Guardados
+        <button type="button" class="btn btn-warning  fw-semibold" data-bs-toggle="modal" data-bs-target="#dataManagementModal">
+          <i class="bi bi-folder-fill me-2"></i>  Archivos Guardados
         </button>
         <app-modal-storage> </app-modal-storage>
       </div>
@@ -46,6 +46,9 @@
       </button>
       <button class="btn btn-danger" *ngIf="false">
         <i class="bi bi-file-earmark-pdf me-1"></i> Export PDF
+      </button>
+      <button class="btn btn-dark text-light" (click)="NuevoExcel()" >
+        <i class="bi bi-file-earmark-plus"></i> Nuevo Registro
       </button>
     </div>
 
@@ -93,15 +96,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of ps.Partidas(), let i=index">
-              <td class="fw-bold">{{i+1}}</td>
+          <tr *ngFor="let p of ps.Partidas(), let i=index" >
+              <td class="fw-bold" #tr>{{i+1}}</td>
               <td>{{p.partidas}}</td>
               <td>{{p.peso}}</td>
               <td>{{p.ubicacion}}</td>
               <td>{{p.tipo_tela}}</td>
               <td>{{p.rollos}}</td>
               <td>{{p.observacion}}</td>
-              <td><button class="border-0" style="background-color: inherit;"><i class="bi bi-trash text-danger"></i></button></td>
+              <td><button class="border-0" style="background-color: inherit;"><i class="bi bi-trash text-danger" (click)="EliminarRegistro(tr.textContent!)"></i></button></td>
           </tr>
         </tbody>
       </table>

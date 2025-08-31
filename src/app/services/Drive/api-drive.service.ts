@@ -39,14 +39,14 @@ export class ApiDriveService {
 
   // Cargar
   async upload(file: File) {
-    const fileName = `${Date.now()}-${file.name}`;
+    
     const { error } = await this._client
       .storage
       .from(this.BUCKET)
-      .upload(fileName, file,{upsert:true});
+      .upload(file.name, file,{upsert:true});
 
     if (error) throw error;
-    return fileName;
+    return file.name;
   }
 
     async downloadFile(fileName: string) {

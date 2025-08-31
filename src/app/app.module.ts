@@ -10,6 +10,7 @@ import { MainComponent } from './components/main/main.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalStorageComponent } from './components/modal-storage/modal-storage.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalStorageComponent } from './components/modal-storage/modal-storage.
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ToastrModule.forRoot()
   ],
   providers: [],

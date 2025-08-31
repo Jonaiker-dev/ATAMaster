@@ -16,4 +16,10 @@ export class LoginComponent {
     sessionStorage.setItem("Encargado",encargado)
     this.router.navigate(["/main"])
   }
+
+  Enter(e:KeyboardEvent,value:string){
+    if(e.key==="Enter"){
+      this.Login(value)
+    }
+  }
 }

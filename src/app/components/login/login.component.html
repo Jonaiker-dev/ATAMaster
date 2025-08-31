@@ -14,7 +14,7 @@
       <!-- Input -->
       <div class="mb-3">
         <label for="managerName" class="form-label fw-semibold">Encargado</label>
-        <input type="text" class="form-control"  placeholder="Nombre o Codigo" #Encargado>
+        <input type="text" class="form-control"  placeholder="Nombre o Codigo" (keypress)="Enter($event,Encargado.value)" #Encargado>
       </div>
 
       <!-- Botón -->

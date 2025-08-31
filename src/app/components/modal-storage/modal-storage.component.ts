@@ -38,10 +38,7 @@ export class ModalStorageComponent implements OnInit {
     }
   }
 
-  CargarArchivo(e:Event){
-    const files=(e.target as HTMLInputElement).files;
-    console.log(files![0]);
-  }
+ 
 
   async Descargar(filename:string|null){
     if(filename){

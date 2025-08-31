@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PartidasService } from '../../services/partidas.service';
 
@@ -7,12 +7,23 @@ import { PartidasService } from '../../services/partidas.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  User:string=sessionStorage.getItem("Encargado") || "Edgar Suncion"
- constructor(private router:Router,private ps:PartidasService){
+  codigo:{codigo:number,nombre:string}|undefined
+  User!:string
+
+  ngOnInit(): void {
+    this.codigo =this.ps.Trabajadores.find(persona=>persona.codigo.toString()===sessionStorage.getItem('Encargado')) 
+    if(this.codigo){
+      this.User=this.codigo.nombre 
+    }else{
+      this.User=sessionStorage.getItem("Encargado")!
+    }
+    
+  }
   
- }
+
+ constructor(private router:Router,private ps:PartidasService){}
  
  Logout(){
   sessionStorage.setItem("Partidas","")

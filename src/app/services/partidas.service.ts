@@ -62,6 +62,10 @@ export class PartidasService {
   {
     "codigo": 30255,
     "nombre": "TASAYCO CARLOS"
+  },
+  {
+    "codigo": 72484998,
+    "nombre": "SERV. DIAZ HANSEL"
   }
 ]
 

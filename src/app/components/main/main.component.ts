@@ -61,6 +61,8 @@ export class MainComponent implements OnInit {
       this.toast.error("El documento no tiene nombre")
     }
 
+    setTimeout(()=>{this.NuevoExcel()},1000)
+
   }
 
   NuevoExcel(){
@@ -72,7 +74,6 @@ export class MainComponent implements OnInit {
     const items=[...copia]
     items.splice(parseInt(index)-1,1)
     this.ps.Partidas.set(items)
-    
   }
 
 }

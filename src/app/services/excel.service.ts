@@ -35,7 +35,7 @@ export class ExcelService {
     const fecha= (date.getDate()+'/'+mes+'/'+date.getFullYear()).toString()
     const fechaRow=ws!.getRow(2)
     fechaRow.getCell(3).value=fecha
-    fechaRow.getCell(7).value=sessionStorage.getItem("Nombre")
+    fechaRow.getCell(7).value=sessionStorage.getItem("Nombre") || sessionStorage.getItem("Encargado")
     fechaRow.commit();
 
     //Encargado
@@ -45,12 +45,12 @@ export class ExcelService {
     filas.forEach((f, i) => {
       const row = ws!.getRow(startRow + i);
       row.getCell(1).value = i + 1; // Item
-      row.getCell(2).value = f.partidas;
+      row.getCell(2).value = f.partidas?.toUpperCase();
       row.getCell(4).value = f.peso;
-      row.getCell(5).value = f.ubicacion;
-      row.getCell(6).value = f.tipo_tela;
+      row.getCell(5).value = f.ubicacion?.toUpperCase();
+      row.getCell(6).value = f.tipo_tela?.toUpperCase();
       row.getCell(7).value = f.rollos;
-      row.getCell(8).value = f.observacion;
+      row.getCell(8).value = f.observacion?.toUpperCase();
       row.commit(); // aplica los cambios en la fila
     });
 

@@ -13,27 +13,44 @@ export class FormularioUbicacionComponent implements OnInit {
  
 
   FormularioPartidas!:FormGroup;
-  
-  constructor(private fb:FormBuilder,private ps:PartidasService,private toast:ToastrService ){}
+  isChecked:boolean=false
+
+  constructor(private fb:FormBuilder,public ps:PartidasService,private toast:ToastrService ){
+    
+  }
 
   ngOnInit(): void {
     this.FormularioPartidas=this.fb.group({
       partidas:['',Validators.required],
       peso:[0,Validators.required],
-      ubicacion:['',Validators.required],
+      ubicacion:[''],
       tipo_tela:['',Validators.required],
       rollos:[0,Validators.required],
       observacion:[""]
     })
   }
 
-  Guardar(){
+  Guardar(check:HTMLInputElement){
+    if(this.ps.Partidas().length==34){
+      setTimeout(()=>{this.toast.warning("LLegaste al Maximo de Registros Permitidos")},1000)
+    }
     if (this.FormularioPartidas.valid){
       this.ps.addItem(this.FormularioPartidas.value)
-      this.FormularioPartidas.reset()
+      if(check.checked){
+        const ubicado=this.FormularioPartidas.get('ubicacion')!.value
+        this.FormularioPartidas.reset()
+        this.FormularioPartidas.get('ubicacion')?.setValue(ubicado)
+      }else{
+        this.FormularioPartidas.reset()
+
+      }
+      
+      
       this.toast.success("Agregado Correctamente",'',{timeOut:1000})
     }else{
       this.toast.error("No se pudo agregar, revisa el formulario","Error")
     }
   }
+
+  
 }

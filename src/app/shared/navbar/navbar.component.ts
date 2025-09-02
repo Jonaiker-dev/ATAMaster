@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
  
  Logout(){
   sessionStorage.setItem("Partidas","")
+  sessionStorage.setItem("Nombre","")
   this.ps.Partidas.set([])
   this.router.navigate(['/'])
  }

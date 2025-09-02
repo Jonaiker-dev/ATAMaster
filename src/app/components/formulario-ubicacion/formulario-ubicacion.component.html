@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <!-- Inicia Form -->
-        <form [formGroup]="FormularioPartidas" (ngSubmit)="Guardar()">
+        <form [formGroup]="FormularioPartidas" (ngSubmit)="Guardar(check)">
           <div class="mb-3">
             <label for="batchNumber" class="form-label">Partida <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="batchNumber" placeholder="Ejemplo: H3203" formControlName="partidas">
@@ -16,9 +16,13 @@
             <label for="weight" class="form-label">Peso (kg) <span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="weight" placeholder="Peso exacto o aproximado" formControlName="peso" >
           </div>
-          <div class="mb-3">
+          <div class="mb-3 ">
             <label for="location" class="form-label">Ubicacion <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="location"  maxlength="11" placeholder="Ejemplo: ATA02010102" formControlName="ubicacion">
+            <input type="text" class="form-control" id="location"  maxlength="11" placeholder="Ejemplo: ATA02010102" formControlName="ubicacion" [readOnly]="isChecked" >
+            <div class="d-flex gap-1 mt-2">
+              <input type="checkbox" name="" id="checkMantener"  #check >
+              <label for="checkMantener" class="fw-bold text-muted"> Mantener</label>
+            </div>
           </div>
           <div class="mb-3">
             <label for="fabricType" class="form-label">Tipo de Tela<span class="text-danger">*</span></label>
@@ -26,11 +30,14 @@
               <option selected disabled>Agregar tipo de tela</option>
               <option value="Jersey">Jersey</option>
               <option value="Rib">Rib</option>
+              <option value="Jersey 50/1">Jersey 50/1</option>
+              <option value="Listado">Listado</option>
               <option value="F.T">French Terry</option>
               <option value="Pique">Pique</option>
               <option value="Cinta">Cinta</option>
               <option value="Rectilineo">Rectilineo</option>
               <option value="Estampado">Estampado</option>
+              <option value="Popelina">Popelina</option>
               <option value="Otros">Otros</option>
             </select>
           </div>
@@ -43,7 +50,7 @@
             <textarea class="form-control" id="notes" rows="3" placeholder="" formControlName="observacion"></textarea>
           </div>
           <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" [disabled]="ps.Partidas().length>=35">
               <i class="bi bi-floppy me-2"></i>Guardar
             </button>
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

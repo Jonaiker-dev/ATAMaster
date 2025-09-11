@@ -13,7 +13,7 @@ export class LoginComponent {
   }
 
   Login(encargado:string){
-    sessionStorage.setItem("Encargado",encargado)
+    localStorage.setItem("Encargado",encargado)
     this.router.navigate(["/main"])
   }
 

@@ -35,7 +35,7 @@ export class ExcelService {
     const fecha= (date.getDate()+'/'+mes+'/'+date.getFullYear()).toString()
     const fechaRow=ws!.getRow(2)
     fechaRow.getCell(3).value=fecha
-    fechaRow.getCell(7).value=sessionStorage.getItem("Nombre") || sessionStorage.getItem("Encargado")
+    fechaRow.getCell(7).value=localStorage.getItem("Nombre") || localStorage.getItem("Encargado")
     fechaRow.commit();
 
     //Encargado

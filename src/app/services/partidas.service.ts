@@ -72,13 +72,13 @@ export class PartidasService {
 
   constructor() {
     effect(()=>{
-      sessionStorage.setItem(this.storageKey, JSON.stringify(this.Partidas()))
+      localStorage.setItem(this.storageKey, JSON.stringify(this.Partidas()))
     });
 
    }
 
   private loadFromStorage(): any[] {
-    const data = sessionStorage.getItem(this.storageKey);
+    const data = localStorage.getItem(this.storageKey);
     return data ? JSON.parse(data) : [];
   }
 

@@ -13,12 +13,12 @@ export class NavbarComponent implements OnInit {
   User!:string
 
   ngOnInit(): void {
-    this.codigo =this.ps.Trabajadores.find(persona=>persona.codigo.toString()===sessionStorage.getItem('Encargado')) 
+    this.codigo =this.ps.Trabajadores.find(persona=>persona.codigo.toString()===localStorage.getItem('Encargado')) 
     if(this.codigo){
       this.User=this.codigo.nombre
-      sessionStorage.setItem("Nombre",this.codigo.nombre) 
+      localStorage.setItem("Nombre",this.codigo.nombre) 
     }else{
-      this.User=sessionStorage.getItem("Encargado")!
+      this.User=localStorage.getItem("Encargado")!
     }
     
   }
@@ -27,8 +27,8 @@ export class NavbarComponent implements OnInit {
  constructor(private router:Router,private ps:PartidasService){}
  
  Logout(){
-  sessionStorage.setItem("Partidas","")
-  sessionStorage.setItem("Nombre","")
+  localStorage.setItem("Partidas","")
+  localStorage.setItem("Nombre","")
   this.ps.Partidas.set([])
   this.router.navigate(['/'])
  }

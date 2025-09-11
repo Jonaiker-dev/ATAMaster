@@ -8,7 +8,7 @@ import { StorageItems } from '../../interfaces/StorageItems';
   styleUrl: './modal-storage.component.css',
 })
 export class ModalStorageComponent implements OnInit {
-  Encargado = sessionStorage.getItem('Encargado');
+  Encargado = localStorage.getItem('Encargado');
   data: any;
   files = signal<StorageItems[]>([]);
 

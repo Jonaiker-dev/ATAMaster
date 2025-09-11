@@ -68,7 +68,7 @@ export class ExcelService {
     // { type: 'application/vnd.ms-excel.sheet.macroEnabled.12' }
     // );
 
-    this.supa.upload(file)
+    return file
     
   }
 

@@ -22,6 +22,7 @@ interface PartidasData {
 export class MainComponent implements OnInit {
   toast = inject(ToastrService);
   excel = inject(ExcelService);
+  drive = inject(ApiDriveService);
   files = signal<{ name: string; url: string }[]>([]);
 
   constructor(public ps: PartidasService, private supa: ApiDriveService) {}
@@ -52,16 +53,22 @@ export class MainComponent implements OnInit {
     const min = date.getMinutes().toString().padStart(2, '0');
     const ss = date.getSeconds().toString().padStart(2, '0');
     const hora=`${hh}:${min}:${ss}`
-    console.log(hora);
+    
     if(name){
-      await this.excel.generarExcel(this.ps.Partidas(),`${fecha}-${name}-${hora}.xlsx`)
-      filename.value=''
-      this.toast.info("Guardado Correctamente")
+      let excelfile=await this.excel.generarExcel(this.ps.Partidas(),`${fecha}-${name}-${hora}.xlsx`)
+      this.drive.upload(excelfile).then((result)=>{
+        console.log(result);
+        filename.value=''
+        this.toast.info("Guardado Correctamente")
+        setTimeout(()=>{this.NuevoExcel()},1000)
+      })
+      .catch((error)=>{
+        this.toast.warning("Error en su conexion, intente de nuevo")
+      })
     }else{
       this.toast.error("El documento no tiene nombre")
     }
 
-    setTimeout(()=>{this.NuevoExcel()},1000)
 
   }
 
